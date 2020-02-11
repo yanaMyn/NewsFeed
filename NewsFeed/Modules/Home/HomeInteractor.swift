@@ -26,9 +26,9 @@ class HomeInteractor: HomePresenterToInteractorProtocol {
     func fetchData() {
         self.service.performRequest(apiNetwork: APIWrapperHome.getList(page: "0", querySearch: "Indonesia")) { (result) in
             switch result {
-            case .success(let data, _):
+            case .success(let data, let urlResponse):
                 
-            guard let object = data.decode(modelType: Feed.self, data: data) as? Feed else { return }
+            guard let object = data.decode(modelType: Feed.self, data: data) as? Feed, urlResponse?.statusCode == 200 else { return }
             self.presenter?.dataFetched(object: object)
                 
             case .failure(let error):
