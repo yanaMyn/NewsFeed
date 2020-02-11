@@ -27,12 +27,9 @@ class HomeInteractor: HomePresenterToInteractorProtocol {
         self.service.performRequest(apiNetwork: APIWrapperHome.getList(page: "0", querySearch: "Indonesia")) { (result) in
             switch result {
             case .success(let data, _):
-            do {
-                let feed = try JSONDecoder().decode(Feed.self, from: data)
-                self.presenter?.dataFetched(object: feed)
-            } catch let err {
-                print(err)
-            }
+                
+            guard let object = data.decode(modelType: Feed.self, data: data) as? Feed else { return }
+            self.presenter?.dataFetched(object: object)
                 
             case .failure(let error):
                 self.presenter?.dataFetchedFailed(errorName: error.localizedDescription)

@@ -8,8 +8,6 @@
 
 import Foundation
 
-public let apiKey = "eZQtR0hFexpMaob5ftM3X6Y28UbMvbEJ"
-
 public enum Environment {
     case development, staging, production
 }

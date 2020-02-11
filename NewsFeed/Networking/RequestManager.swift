@@ -17,6 +17,6 @@ public protocol DefaultRequest {
 }
 
 public protocol Request {
-    func performRequest(apiNetwork: APIWrapper, completionHandler: @escaping completionHandler)
+    func performRequest(apiNetwork: APIWrapper, completionHandler: @escaping CompletionHandler)
     func cancelRequest()
 }

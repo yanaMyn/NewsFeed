@@ -10,7 +10,7 @@ import Foundation
 
 extension URLSession {
     
-    func dataTask(with url: URLRequest, completionHandler: @escaping completionHandler) -> URLSessionDataTask {
+    func dataTask(with url: URLRequest, completionHandler: @escaping CompletionHandler) -> URLSessionDataTask {
         return dataTask(with: url, completionHandler: { (data, urlResponse, error) in
             if let error = error {
                 completionHandler(.failure(error))

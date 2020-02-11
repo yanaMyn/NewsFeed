@@ -8,10 +8,6 @@
 
 import Foundation
 
-public typealias Parameters = [String: Any]
-public typealias Headers = [String: String]
-public typealias completionHandler = (Result<(Data, HTTPURLResponse?), Error>) -> Void
-
 public class APINetwork: DefaultRequest {
     
     fileprivate var sessionValue: URLSession = URLSession(configuration: .default)
@@ -85,7 +81,7 @@ public class APINetwork: DefaultRequest {
 
 extension APINetwork: Request {
     
-    public func performRequest(apiNetwork: APIWrapper, completionHandler: @escaping completionHandler) {
+    public func performRequest(apiNetwork: APIWrapper, completionHandler: @escaping CompletionHandler) {
         guard let aUrl = URL(string: apiNetwork.endPoint) else { return }
         self.encoding(urlString: apiNetwork.endPoint, aUrl: aUrl, encoding: apiNetwork.encoding, parameters: apiNetwork.parameters)
         self.request?.httpMethod = apiNetwork.method.rawValue
